@@ -1,0 +1,30 @@
+Change the SHELL for Bob from bash to Bourne Shell
+
+Bob's password is caleston123
+
+Note: - Normal users can not execute the high-level tasks so add sudo before the command.
+
+sudo chsh -s /bin/sh bob
+
+
+Create a new environment variable called PROJECT=MERCURY and make it persistent by adding the variable to the ~/.profile file.
+
+Use export PROJECT=MERCURY
+and add the value to the .profile by running echo 'export PROJECT=MERCURY' >> /home/bob/.profile
+
+Set an alias called up for the command uptime and make it persistent by adding to ~/.profile file.
+
+ echo "alias up=uptime" >> .profile
+ 
+Update Bob's prompt so that it displays the date as per the format below:
+
+Example: [Wed Apr 22]bob@caleston-lp10:~$
+Make sure the change is made persistent.
+
+
+Update Bob's prompt so that it displays the date as per the format below:
+
+Example: [Wed Apr 22]bob@caleston-lp10:~$
+Make sure the change is made persistent.
+
+echo 'PS1="[\d]\u@\h:\w$"' >> ~/.profile
