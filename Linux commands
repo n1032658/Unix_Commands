@@ -42,3 +42,22 @@ dmesg
 How many block devices of type disk are present in the system?
 
 lsblk
+
+
+Use an rpm command and find out the exact package name for wget installed in this server (centos-lab).
+
+rpm -qa | grep wget
+
+
+The package for the firefox browser has been downloaded under /home/bob in the centos-lab server.
+Try to install it using RPM.
+
+
+sudo rpm -ivh /home/bob/firefox-68.6.0-1.el7.centos.x86_64.rpm
+
+ (It might fail due to failed dependencies)
+ sudo yum install firefox -y
+ sudo yum repolist // repo list
+ sudo yum provides tcpdump // which package provides tcpdump
+ 
+
