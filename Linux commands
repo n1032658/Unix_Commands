@@ -369,3 +369,22 @@ Copy the file caleston-code.tar.gz from Bob's laptop to Bob's home directory on 
 scp caleston-code.tar.gz bob@devapp01:/home/bob
 
 On the devapp01 webserver, unzip and extract the copied file in the directory /opt/.
+sudo tar -C /opt/ -xvf caleston-code.tar.gz
+
+What port is postgres running on? Check using the netstat command?
+netstat -nlp | grep LISTEN | grep -i postgres
+
+
+Service name, mercury.service, WorkingDirectory: /opt/caleston-code/mercuryProject/, Command to run: python3 manage.py runserver 0.0.0.0:8000
+
+Restart on failure and enable for multi-user.target
+
+Run as user mercury.
+
+Set description: Project Mercury Web Application
+
+Create the unit file under /etc/systemd/system. Once done enable and start the mercury.service.
+
+
+
+
