@@ -170,3 +170,6 @@ sudo iptables -A OUTPUT -p TCP -s 172.16.238.11 --dport 5432 -j ACCEPT
 sudo iptables -A OUTPUT -p TCP -s 172.16.238.15 --dport 80 -j ACCEPT
 sudo iptables -A OUTPUT -p TCP --dport 80  -j DROP
 sudo iptables -A OUTPUT -p TCP --dport 443  -j DROP
+
+Add an OUTPUT rule to the top of the chain which will allow https connection to google.com on devapp01
+sudo iptables -I OUTPUT -p TCP -d google.com --dport 443 -j ACCEPT
