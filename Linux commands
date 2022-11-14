@@ -362,3 +362,10 @@ Do not unmount the filesystem.
 
 sudo lvresize -L +500M -n /dev/mapper/caleston_vg-data
 sudo resize2fs /dev/mapper/caleston_vg-data
+
+
+Copy the file caleston-code.tar.gz from Bob's laptop to Bob's home directory on the webserver devapp01
+
+scp caleston-code.tar.gz bob@devapp01:/home/bob
+
+On the devapp01 webserver, unzip and extract the copied file in the directory /opt/.
