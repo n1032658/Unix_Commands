@@ -250,4 +250,37 @@ check the routes run traceroute
 netstat -an | grep 80 | grep -i listen
 
 
+What is the status of the sample.service unit?
+sudo systemctl status sample.service
 
+Try starting the service
+sudo systemctl start sample.service
+
+Why did the service start fail?
+sudo journalctl -u sample.service
+
+Update the [Service] section
+
+Set the ExecStart to run the script /bin/bash /root/sample_script.sh.
+Once done, start the service.
+
+sudo vi /etc/systemd/system/sample.service
+sudo systemctl start sample.service
+
+Enable this service now so that it will be started automatically after a reboot for multi-user.target
+
+sudo systemctl enable sample.service
+
+Now update the service to ensure that it restarts when stopped for any reason.
+
+user Restart=always derivative.
+
+Run: sudo vi /etc/systemd/system/sample.service
+Add Restart=always to the Service section.
+Save and Exit
+
+Reload the service unit file
+sudo systemctl daemon-reload
+
+How would you check the errors encountered earlier when the sample service did not have a valid service section?
+journalctl -u sample.service
