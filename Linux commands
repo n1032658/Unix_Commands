@@ -194,6 +194,12 @@ https://cronjob.xyz/
 
 Schedule a cronjob to run the script /usr/local/bin/last-reboot.sh on the first day of every month at 6 AM.
 The script should not run any other day.
-
+crontab -e
 0 6 1 * * /usr/local/bin/last-reboot.sh
 
+
+The script /usr/local/bin/system-debugger.sh was incorrectly scheduled. It should run every half hour at minute 0 and minute 30
+
+Example: 09:00, 09:30, 10:00, 10:30, 11:00, 11:30……so on every half hour.
+
+*/30 * * * * /usr/local/bin/system-debugger.sh
