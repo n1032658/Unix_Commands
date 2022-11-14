@@ -102,3 +102,9 @@ python3 /home/bob/my_python_test.py 2>/home/bob/py_error.txt
 
 Read the file /usr/share/man/man1/tail.1.gz and without extracting it and redirect the contents to a file called /home/bob/pipes
 zcat /usr/share/man/man1/tail.1.gz | tee /home/bob/pipes
+
+Create a group called john with the GID 1010. Next create another user called john with UID = 1010, primary group = john and login shell = /bin/sh
+
+
+groupadd -g 1010 john
+useradd -u 1010 -g 1010 -s /bin/sh john
