@@ -218,3 +218,26 @@ Run: grep hosts /etc/nsswitch.conf, since the files precede the dns option, it w
 
 Change the order to DNS first and then hosts.
 Update /etc/nsswitch.conf and change the line to hosts: dns files
+
+
+
+What is the default gateway configured in the system?
+
+ip r
+
+However, something seems to be wrong with the network!
+Check if you are able to connect to the HTTP port 80 on the server devapp01-web from Bob's laptop?
+
+telnet devapp01-web 80
+
+Inspect the interface eth0 on devapp01, is it UP?
+
+run: ip link and look at the status of the interface starting with eth0
+Bring up the eth0 interface
+sudo ip link set dev eth0 up
+
+While we are at it, there is also a missing default route on the server devapp01.
+
+Add the default route via eth0 gateway
+
+sudo ip r add default via 172.16.238.1
