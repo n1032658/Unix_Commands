@@ -128,3 +128,20 @@ We have created another file in the sports directory. Change the ownership for t
 Try to do this with one single command. Explore the -R recursive flag with the chown command.
 
 chown -R mercury sports
+
+
+Which port number does the SSH service use by default?
+netstat -ntlp | grep ssh
+If you run ssh devapp01 in the terminal, which user are you using to connect to the server?
+If no user is specified with the ssh command, the connection will be attempted with the logged-in user
+
+password less ssh connection
+
+ssh-keygen -t rsa
+
+Copy the public key to the target server devapp01. Make use of the ssh-copy-id command
+ssh-copy-id bob@devapp01
+The public key is added to the authorized_keys file under /home/bob/.ssh directory
+
+Finally, copy the file /home/bob/caleston-code.tar.gz from Bob's laptop to the server devapp01. Copy the file to Bob's home directory.
+scp /home/bob/caleston-code.tar.gz devapp01:/home/bob
