@@ -284,3 +284,22 @@ sudo systemctl daemon-reload
 
 How would you check the errors encountered earlier when the sample service did not have a valid service section?
 journalctl -u sample.service
+
+
+How many disk type block devices are present in the system?
+lsblk | grep disk
+ls -l /dev/vd*
+
+How many partitions does the disk /dev/vda have currently?
+sudo fdisk -l /dev/vda
+
+Create a GPT partition called vdb1 of size 500M on the disk /dev/vdb
+You can install gdisk by running sudo apt install gdisk
+
+Run: sudo gdisk /dev/vdb
+In the interactive prompt, enter n
+Select parition number = 1 (for vdd1)
+Select default first sector = 2048
+Select +500M when asked for last sector
+Use default hex code = 8300
+Finally type w to write to the partition table
