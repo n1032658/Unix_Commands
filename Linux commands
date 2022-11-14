@@ -173,3 +173,27 @@ sudo iptables -A OUTPUT -p TCP --dport 443  -j DROP
 
 Add an OUTPUT rule to the top of the chain which will allow https connection to google.com on devapp01
 sudo iptables -I OUTPUT -p TCP -d google.com --dport 443 -j ACCEPT
+
+
+cron jobs
+
+Which command is used to list all the cronjobs created for a user?
+crontab --help
+
+nspect the cronjobs scheduled for bob again. Which command/script is run at 11 minutes past 11 PM every Tuesday?
+
+Inspect the cronjobs scheduled.
+The Day of the Week (5th column) should be Tuesday = 2
+The hour(2nd column) should be 11 PM = 23
+The minute (1st column) should be 11 minutes = 11
+This transalates to 11 23 * * 2. The script that runs at this specific schedule is /usr/local/bin/system-identifier.sh
+
+Bonus Hint: Use this handy site to predict a outcome of a Cron configuration:
+https://cronjob.xyz/
+
+
+Schedule a cronjob to run the script /usr/local/bin/last-reboot.sh on the first day of every month at 6 AM.
+The script should not run any other day.
+
+0 6 1 * * /usr/local/bin/last-reboot.sh
+
