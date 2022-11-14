@@ -324,3 +324,41 @@ sudo mount /dev/vdb /mnt/data
 Make the mount persistent across reboot.
 sudo vi /etc/fstab
 /dev/vdb /mnt/data ext4 rw 0 0
+
+
+Is LVM installed on this machine?
+Try out commands such as pvdisplay or lvs
+
+LVM is installed on this machine and you will find that a physical volume has already been created.
+
+
+What is the name of this physical volume?
+
+pvidisplay
+
+Create PV's using /dev/vdb and /dev/vdc.
+
+sudo pvcreate /dev/vdb
+sudo pvcreate /dev/vdc
+
+Create a new volume group called caleston_vg using the newly created PV's
+sudo vgcreate caleston_vg /dev/vdb /dev/vdc
+
+Create a new logical volume called data from the caleston_vg.
+Size of the volume should be 1G
+
+sudo lvcreate -L 1G -n data caleston_vg
+
+Create an ext4 filesystem on this logical volume and mount it at /mnt/media
+
+sudo mkdir /mnt/media
+sudo mkfs.ext4 /dev/mapper/caleston_vg-data
+sudo mount /dev/mapper/caleston_vg-data /mnt/media/
+
+
+Add 500M to the logical volume called data.
+
+Do not unmount the filesystem.
+
+sudo lvresize -L +500M -n /dev/mapper/caleston_vg-data
+sudo resize2fs /dev/mapper/caleston_vg-data
