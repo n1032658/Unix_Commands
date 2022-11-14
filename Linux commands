@@ -145,3 +145,28 @@ The public key is added to the authorized_keys file under /home/bob/.ssh directo
 
 Finally, copy the file /home/bob/caleston-code.tar.gz from Bob's laptop to the server devapp01. Copy the file to Bob's home directory.
 scp /home/bob/caleston-code.tar.gz devapp01:/home/bob
+
+
+IP tables
+------------------------------
+
+sudo apt install iptables
+
+Use the iptables -L command to list the rules.
+
+
+On devapp01, add an incoming rule permitting SSH and HTTP connection from Bob's Laptop. Bob's Laptop has an IP address of 172.16.238.187
+sudo iptables -A INPUT -p TCP -s 172.16.238.187 --dport 22 -j ACCEPT
+sudo iptables -A INPUT -p TCP -s 172.16.238.187 --dport 80 -j ACCEPT
+
+Now, lockdown incoming traffic on devapp01. Drop incoming connections from any source on any destination port for any protocol (TCP/UDP). Remember, this rule should be at the bottom of the chain for the SSH and HTTP access from caleston-lp10 to work.
+sudo iptables -A INPUT -j DROP  
+
+On devapp01, add an outgoing rule permitting access to port 5432 on devdb01 and HTTP access to caleston-repo-01. Once this is done, block outgoing traffic to any destination on http/https ports from devapp01
+
+Note: caleston-repo-01 has the ip address of 172.16.238.15
+
+sudo iptables -A OUTPUT -p TCP -s 172.16.238.11 --dport 5432 -j ACCEPT
+sudo iptables -A OUTPUT -p TCP -s 172.16.238.15 --dport 80 -j ACCEPT
+sudo iptables -A OUTPUT -p TCP --dport 80  -j DROP
+sudo iptables -A OUTPUT -p TCP --dport 443  -j DROP
