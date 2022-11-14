@@ -69,3 +69,36 @@ sudo rpm -ivh /home/bob/firefox-68.6.0-1.el7.centos.x86_64.rpm
  sudo apt install firefox  // Install alogn with dependencies
 
 sudo apt remove
+
+
+Create a tarball of the directory called python and compress it using gzip. The compressed tar file should be available at /home/bob/python.tar.gz
+
+tar -cf /home/bob/python.tar /home/bob/reptile/snake/python
+gzip python.tar 
+
+There is a compressed file called eaglet.dat.gz located under the eagle directory. Extract it in the same location.
+
+gunzip eaglet.dat.gz
+
+
+A file called caleston-code has been copied somewhere inside the /opt directory. But, Bob does not remember which directory he saved it in.
+
+Can you find it?
+
+sudo find /opt -name caleston-code
+
+Find the file under /etc directory that contains the string 172.16.238.197. Save the answer using the absolute path in the file /home/bob/ip
+
+sudo grep -ir 172.16.238.197 /etc/ > /home/bob/ip
+
+Create a new file called /home/bob/file_wth_data.txt. This file should have one line of text that says a file in my home directory.
+
+Make use of the redirect operator.
+
+echo "a file in my home directory" > /home/bob/file_wth_data.txt
+
+Run the command python3 /home/bob/my_python_test.py and redirect the standard error to the file /home/bob/py_error.txt
+python3 /home/bob/my_python_test.py 2>/home/bob/py_error.txt
+
+Read the file /usr/share/man/man1/tail.1.gz and without extracting it and redirect the contents to a file called /home/bob/pipes
+zcat /usr/share/man/man1/tail.1.gz | tee /home/bob/pipes
