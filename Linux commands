@@ -241,3 +241,13 @@ While we are at it, there is also a missing default route on the server devapp01
 Add the default route via eth0 gateway
 
 sudo ip r add default via 172.16.238.1
+
+------
+trobuleshooting network
+ip link
+check dns resolution. Run nslookup servername
+check the routes run traceroute 
+netstat -an | grep 80 | grep -i listen
+
+
+
